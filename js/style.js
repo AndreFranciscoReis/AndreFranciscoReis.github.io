@@ -170,7 +170,7 @@
                       }
                   }
               },
-              date: {
+              birthDate: {
                   validators: {
                       notEmpty: {
                           message: 'The date of birth is required'
