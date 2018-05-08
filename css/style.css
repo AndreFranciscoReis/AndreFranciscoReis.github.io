@@ -1,0 +1,236 @@
+a {
+    text-decoration: none;
+    color: #fff;
+}
+
+a:hover {
+    color: #fff;
+    text-decoration: none;
+}
+
+#contact_form {
+    position: relative;
+    /*min-height: 400px;*/
+}
+
+#contact_form fieldset {
+    /*stacking fieldsets above each other*/
+    position: relative;
+}
+
+
+/*Hide all except first fieldset*/
+
+#contact_form fieldset:not(:first-of-type) {
+    display: none;
+}
+
+
+.header-style {
+    height: 56px;
+    width: 100%;
+    background-color: #F6F6F6;
+}
+
+.steps-group {
+    height: 75px;
+    width: 100%;
+    margin-top: 100px;
+    margin-bottom: 58px;
+    text-align: center;
+}
+
+.steps-anchor {
+    text-decoration: none;
+}
+
+.steps-oval {
+    height: 46px;
+    width: 46px;
+    border: 1px solid #FFFFFF;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 46px;
+    display: inline-block;
+    margin: 14.5px 22.5px 14.5px 15.5px;
+}
+
+.steps-title {
+    height: 22px;
+    width: 134px;
+    color: #FFFFFF;
+    font-family: "Helvetica Neue";
+    font-size: 17px;
+    font-weight: bold;
+    line-height: 22px;
+    display: inline-block;
+    text-align: left;
+}
+
+.grey-background {
+    background-color: #F8F8F8;
+    display: block;
+    width: 100%;
+}
+
+.form-left {
+    padding: 0px 60.5px 0px 155px;
+    position: relative;
+    display: block;
+}
+
+.form-right {
+    padding: 0px 60.5px 0px 60.5px;
+    position: relative;
+    display: block;
+}
+
+.form-title {
+    height: 48px;
+    width: 100%;
+    color: #00356A;
+    font-family: "Helvetica Neue";
+    font-size: 40px;
+    font-weight: 100;
+    line-height: 48px;
+    margin-top: 51px;
+    margin-bottom: 46px;
+}
+
+.form-elem-name {
+    height: 24px;
+    width: 100%;
+    color: #00356A;
+    font-family: "Helvetica Neue";
+    font-size: 17px;
+    line-height: 24px;
+}
+
+.form-elem-oblig {
+    height: 12px;
+    width: 100%;
+    color: red;
+    /*#00356A;*/
+    font-family: "Helvetica Neue";
+    font-size: 13px;
+    line-height: 12px;
+}
+
+.form-elem-field {
+    height: 48px;
+    /*width: 100%;*/
+    border: 1px solid #00356A;
+    border-radius: 3px;
+    background-color: #FFFFFF;
+}
+
+.form-button-label {
+    height: 30px;
+    width: 215.38px;
+    color: #FFFFFF;
+    font-family: "Helvetica Neue";
+    font-size: 23px;
+    font-weight: 300;
+    line-height: 30px;
+    text-align: center;
+}
+
+.form-button-next {
+    height: 56px;
+    width: 280px;
+    border: 1px solid #00356A;
+    border-radius: 2px;
+    background-color: #00356A;
+    margin-bottom: 59px;
+}
+
+.form-buttons-group-right {
+    width: 100%;
+    text-align: right;
+}
+
+.form-buttons-group-left {
+    width: 100%;
+    text-align: left;
+}
+
+.footer-message {
+    height: 36px;
+    width: 300px;
+    color: #FFFFFF;
+    font-family: "Helvetica Neue";
+    font-size: 30px;
+    font-weight: 100;
+    line-height: 331px;
+    text-align: center;
+}
+
+input[type="checkbox"]:checked + label {
+    box-sizing: border-box;
+    height: 34px;
+    width: 34px;
+    border: 1px solid #00356A;
+    background-color: #FFFFFF;
+}
+
+
+
+/*Progress bar*/
+
+#progressbar {
+    overflow: hidden;
+    /*CSS counters to number the steps*/
+    counter-reset: step;
+}
+
+#progressbar p {
+    font-size: 17px;
+    font-weight: bold;
+    color: #00356A;
+    font-family: "Helvetica Neue";
+    height: 75px;
+    width: 235px;
+    border: 1px solid #00356A;
+    border-radius: 4px;
+    background-color: #FFFFFF;
+    display: inline-block;
+    text-align: center;
+}
+
+#progressbar p:before {
+    content: counter(step);
+    counter-increment: step;
+    height: 46px;
+    width: 46px;
+    border: 1px solid #00356A;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 46px;
+    display: inline-block;
+    margin: 14.5px 22.5px 14.5px 15.5px;
+}
+
+
+
+#progressbar p:first-child:after {
+    //connector not needed before the first step
+    content: none;
+}
+
+
+/*marking active/completed steps green*/
+
+
+/*The number of the step and the connector before it = green*/
+
+#progressbar p.active {
+    background-color: #00356A;
+    color: #FFFFFF;
+}
+
+#progressbar p.active:before,
+#progressbar p.active:after {
+    border: 1px solid #FFFFFF;
+    background-color: #00356A;
+    color: #FFFFFF;
+}

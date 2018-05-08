@@ -1,0 +1,423 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <!-- Form CSS -->
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <!-- Include FontAwesome CSS if you want to use feedback icons provided by FontAwesome -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/fontawesome/4.1.0/css/font-awesome.min.css" />
+    <!-- BootstrapValidator CSS -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/jquery.bootstrapvalidator/0.5.0/css/bootstrapValidator.min.css" />
+    <!-- Include FontAwesome CSS if you want to use feedback icons provided by FontAwesome -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/fontawesome/4.1.0/css/font-awesome.min.css" />
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/jquery-ui.min.js'></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.2/js/bootstrapValidator.min.js"></script>
+    <script src="js/style.js"></script>
+    <title>Form Page</title>
+</head>
+
+<body>
+    <header class="header-style">
+    </header>
+    <div class="steps-group" id="progressbar">
+        <p class="active">No. Assurance</p>
+        <p>Patient Data</p>
+        <p>Insurance Data</p>
+        <p>Medical Data</p>
+        <p>Residence Data</p>
+    </div>
+    <div class="grey-background">
+        <form id="contact_form" method="post">
+            <fieldset class="form-left">
+                <div class="row">
+                    <div class="col-12">
+                        <h1 class="form-title">Nº carte assurance de base</h1>
+                        <div class="form-group">
+                            <input type="text" class="col-sm-11 form-elem-field form-control" name="nCarte" />
+                        </div>
+                    </div>
+                </div>
+                <input type="button" name="next" style="" class="next form-button-next form-button-label" value="Next" />
+            </fieldset>
+            <fieldset class="form-left">
+                <div class="row">
+                    <div class="col-6">
+                        <h1 class="form-title">Patient Data</h1>
+                        <div class="form-group">
+                            <label class="form-elem-name control-label">Prénom *</label>
+                            <input type="text" class="col-sm-11 form-elem-field form-control" name="prenom" />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-elem-name control-label">Nom *</label>
+                            <input type="text" class="col-sm-11 form-elem-field form-control" name="nom" />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-elem-name control-label">Date de Naissance *</label>
+                            <input type="text" class="col-sm-11 form-elem-field form-control" name="birthDate" placeholder="YYYY/MM/DD" />
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-sm-6">
+                                <label class="control-label form-elem-name">Etat Civil</label>
+                                <div class="dropdown">
+                                    <select class="form-elem-field" name="civilState">
+                                        <option value="single">Sinlge</option>
+                                        <option value="married">Married</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <label class="control-label form-elem-name control-label">Sexe</label>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="gender" value="man" /> Homme</label>
+                                    <label>
+                                        <input type="radio" name="gender" value="woman" /> Femme</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-elem-name control-label">Address</label>
+                            <input type="text" class="col-sm-11 form-elem-field form-control" name="address" />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-elem-name control-label">NP + Lieu</label>
+                            <input type="text" class="col-sm-11 form-elem-field form-control" name="NPLieu" />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-elem-name control-label">Canton</label>
+                            <input type="text" class="col-sm-11 form-elem-field form-control" name="canton" />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-elem-name control-label">Téléphone</label>
+                            <input type="text" class="col-sm-11 form-elem-field form-control" name="phone" />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-elem-name control-label">Address e-mail</label>
+                            <input type="text" class="col-sm-11 form-elem-field form-control" name="email" />
+                        </div>
+                    </div>
+                    <div class="col-6 form-right">
+                        <h1 class="form-title">Personne de Contact</h1>
+                        <div class="form-group">
+                            <label class="form-elem-name control-label">Nom</label>
+                            <input type="text" class="col-sm-11 form-elem-field form-control" name="contactNom" />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-elem-name control-label">Téléphone</label>
+                            <input type="text" class="col-sm-11 form-elem-field form-control" name="contactPhone" />
+                        </div>
+                        <h1 class="form-title">Employeur</h1>
+                        <div class="form-group">
+                            <label class="form-elem-name control-label">Nom</label>
+                            <input type="text" class="col-sm-11 form-elem-field form-control" name="employeurName" />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-elem-name control-label">Localité</label>
+                            <input type="text" class="col-sm-11 form-elem-field form-control" name="employeurLocal" />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-elem-name control-label">Téléphone</label>
+                            <input type="text" class="col-sm-11 form-elem-field form-control" name="employeurTel" />
+                        </div>
+                    </div>
+                </div>
+                <input type="button" name="previous" class="previous form-button-next form-button-label" value="Previous" />
+                <input type="button" name="next" class="next form-button-next form-button-label" value="Next" />
+            </fieldset>
+            <fieldset class="form-left">
+                <div class="row">
+                    <div class="col-6">
+                        <h1 class="form-title">Insurance Data</h1>
+                        <div class="form-group">
+                            <label class="form-elem-name control-label">N° AVS</label>
+                            <input type="text" class="col-sm-11 form-elem-field form-control" name="nAvs" />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-elem-name control-label">N° POLICE</label>
+                            <input type="text" class="col-sm-11 form-elem-field form-control" name="nPolice" />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-elem-name control-label">Assurance BASE Nom</label>
+                            <input type="text" class="col-sm-11 form-elem-field form-control" name="assuranceBASEName" />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-elem-name control-label">Assurance BASE No. OFAS</label>
+                            <input type="text" class="col-sm-11 form-elem-field form-control" name="assuranceBASE_OFAS" />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-elem-name control-label">Assurance COMPL Nom</label>
+                            <input type="text" class="col-sm-11 form-elem-field form-control" name="assuranceCOMPLName" />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-elem-name control-label">Assurance COMPL No. OFAS</label>
+                            <input type="text" class="col-sm-11 form-elem-field form-control" name="assuranceCOMPL_OFAS" />
+                        </div>
+                    </div>
+                    <div class="col-6 form-right">
+                        <h1 class="form-title"></h1>
+                        <div class="form-group">
+                            <label class="form-elem-name control-label">Patient payant lui-même / étrangers</label>
+                            <input type="text" class="col-sm-11 form-elem-field form-control" name="patientType" />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-elem-name control-label">Médecin traitant</label>
+                            <input type="text" class="col-sm-11 form-elem-field form-control" name="traitant" />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-elem-name control-label">Médecin envoyeur</label>
+                            <input type="text" class="col-sm-11 form-elem-field form-control" name="envoyeur" />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-elem-name control-label">Classe</label>
+                            <input type="text" class="col-sm-11 form-elem-field form-control" name="relation" />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-elem-name control-label">Surclassement hôtelier</label>
+                            <div class="dropdown">
+                                <select class="form-elem-field" name="surclassement">
+                                    <option value="none"></option>
+                                    <option value="suite">Suite</option>
+                                    <option value="presidential">Presidential Suite</option>
+                                    <option value="penthouse">Penthouse</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <input type="button" name="previous" class="previous form-button-next form-button-label" value="Previous" />
+                <input type="button" name="next" style="" class="next form-button-next form-button-label" value="Next" />
+            </fieldset>
+            <fieldset class="form-left">
+                <div class="row">
+                    <div class="col-6">
+                        <h1 class="form-title">Nature de l'affection</h1>
+                        <div class="form-group">
+                            <label class="form-elem-name control-label">Maladie</label>
+                            <input type="text" class="col-sm-11 form-elem-field form-control" name="maladie" />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-elem-name control-label">Accident</label>
+                            <input type="text" class="col-sm-11 form-elem-field form-control" name="accident" />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-elem-name control-label">Date</label>
+                            <input type="text" class="col-sm-11 form-elem-field form-control" name="accidentDate" />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-elem-name control-label">Nº sinistre</label>
+                            <input type="text" class="col-sm-11 form-elem-field form-control" name="nSinistre" />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-elem-name control-label">Esthétique</label>
+                            <input type="text" class="col-sm-11 form-elem-field form-control" name="nSinistre" />
+                        </div>
+                        <br />
+                        <div class="form-group">
+                            <label class="control-label form-elem-name ">Consentement eclaire</label>
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="sex" value="yes" /> Yes</label>
+                                <label>
+                                    <input type="radio" name="sex" value="no" /> No</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6 form-right">
+                        <h1 class="form-title">Traitement et Preparation Speciale</h1>
+                        <div class="form-group">
+                            <label class="control-label form-elem-name ">Consultation anesthésie</label>
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="allergieLatex" value="yes" /> Yes</label>
+                                <label>
+                                    <input type="radio" name="allergieLatex" value="no" /> No</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label form-elem-name ">Allergie au LATEX</label>
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="allergieLatex" value="yes" /> Yes</label>
+                                <label>
+                                    <input type="radio" name="allergieLatex" value="no" /> No</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label form-elem-name ">Allergie à I'IODE</label>
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="allergieIode" value="yes" /> Yes</label>
+                                <label>
+                                    <input type="radio" name="allergieIode" value="no" /> No</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label form-elem-name ">TTT Sindrome</label>
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="tttSindrome" value="yes" /> Yes</label>
+                                <label>
+                                    <input type="radio" name="tttSindrome" value="no" /> No</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-sm-6">
+                                <label class="control-label form-elem-name ">TTT Sindrome</label>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="tttSindrome" value="yes" /> Yes</label>
+                                    <label>
+                                        <input type="radio" name="tttSindrome" value="no" /> No</label>
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <label class="control-label form-elem-name ">Arrêt pré-op</label>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="tttSindromeArret" value="yes" /> Yes</label>
+                                    <label>
+                                        <input type="radio" name="tttSindromeArret" value="no" /> No</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-sm-6">
+                                <label class="control-label form-elem-name ">Aspirine</label>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="tttSindrome" value="yes" /> Yes</label>
+                                    <label>
+                                        <input type="radio" name="tttSindrome" value="no" /> No</label>
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <label class="control-label form-elem-name ">Arrêt pré-op</label>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="aspirineArret" value="yes" /> Yes</label>
+                                    <label>
+                                        <input type="radio" name="aspirineArret" value="no" /> No</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-sm-6">
+                                <label class="control-label form-elem-name ">Plavix</label>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="tttSindrome" value="yes" /> Yes</label>
+                                    <label>
+                                        <input type="radio" name="tttSindrome" value="no" /> No</label>
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <label class="control-label form-elem-name ">Arrêt pré-op</label>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" class="radio-btn" name="plavixArret" value="yes" /> Yes</label>
+                                    <label>
+                                        <input type="radio" name="plavixArret" value="no" /> No</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <input type="button" name="previous" class="previous form-button-next form-button-label" value="Previous" />
+                <input type="button" name="next" style="" class="next form-button-next form-button-label" value="Next" />
+            </fieldset>
+            <fieldset class="form-left">
+                <div class="row">
+                    <div class="col-6">
+                      <h1 class="form-title">Bloc Operatoire</h1>
+                        <div class="form-group">
+                            <label class="form-elem-name control-label">Médecin Opérateur</label>
+                            <input type="text" class="col-sm-12 form-elem-field form-control" name="operateur" />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-elem-name control-label">Médecin Assistant</label>
+                            <input type="text" class="col-sm-12 form-elem-field form-control" name="assistant" />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-elem-name control-label">Diagnostic</label>
+                            <input type="text" class="col-sm-12 form-elem-field form-control" name="diagnostis" />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-elem-name control-label">Type intervention</label>
+                            <input type="text" class="col-sm-12 form-elem-field form-control" name="typeIntervention" />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-elem-name control-label">Durée opératoire</label>
+                            <input type="text" class="col-sm-12 form-elem-field form-control" name="dureeOperatoire" />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-elem-name control-label">Instruments, matériel, implants à commander</label>
+                            <input type="text" class="col-sm-12 form-elem-field form-control" name="operationTools" />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-elem-name control-label">Position sur la table</label>
+                            <input type="text" class="col-sm-12 form-elem-field form-control" name="position" />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-elem-name control-label">Appareillage spécifique</label>
+                            <input type="text" class="col-sm-12 form-elem-field form-control" name="appareillage" />
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label form-elem-name ">Hospitalisation en cours</label>
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="sex" value="yes" /> Yes</label>
+                                <label>
+                                    <input type="radio" name="sex" value="no" /> No</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6 form-right">
+                      <h1 class="form-title">Séjours</h1>
+                        <div class="form-group">
+                            <label class="form-elem-name control-label">Hospitalisation</label>
+                            <input type="text" class="col-sm-11 form-elem-field form-control" name="hospitalisation" />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-elem-name control-label">Hospitalisation</label>
+                            <input type="text" class="col-sm-11 form-elem-field form-control" name="hospitalisation" />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-elem-name control-label">Ambulatoire</label>
+                            <input type="text" class="col-sm-11 form-elem-field form-control" name="ambulatoire" />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-elem-name control-label">Date entrée</label>
+                            <input type="text" class="col-sm-11 form-elem-field form-control" name="dateEntrée " />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-elem-name control-label">Date d’opération</label>
+                            <input type="text" class="col-sm-11 form-elem-field form-control" name="dateDopération" />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-elem-name control-label">Durée d'hospitalisation: nb jours post-op</label>
+                            <input type="text" class="col-sm-11 form-elem-field form-control" name="dureeDhospitalisation" />
+                        </div>
+                    </div>
+                </div>
+                <input type="button" name="previous" class="previous form-button-next form-button-label" value="Previous" />
+                <input type="button" name="next" style="" class="form-button-next form-button-label" value="PDF" />
+                <input type="submit" name="next" style="" class="form-button-next form-button-label" value="Submit" />
+            </fieldset>
+        </form>
+    </div>
+    <div style="background-color: #0371B8; width: 100%; height: 331px; text-align: center; vertical-align: middle;" class="footer-message">
+        Team Digital Marketing
+    </div>
+</body>
+
+</html>
