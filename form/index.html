@@ -23,14 +23,33 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.2/js/bootstrapValidator.min.js"></script>
     <script src="js/style.js"></script>
+    
+    <script src="js/cardReader.js"></script>
+    
+    <script src="js/pdfmake.min.js"></script>
+    <script src="js/vfs_fonts.js"></script>
+    <script src="js/pdf.js"></script>
+    <script src="js/webservice.js"></script>
+
     <title>Form Page</title>
 </head>
 
 <body>
     <header class="header-style">
+      <div class="form-left">
+        <div class="row">
+          <div class="col-6 form-left">
+            
+          </div>
+          <div class="col-6 form-right">
+            <!-- <p style="float: right;">+41 12 345 67 89</p>
+            <p style="float: right;">French</p> -->
+          </div>
+        </div>
+      </div>
     </header>
-    <div class="steps-group" id="progressbar">
-        <p class="active">No. Assurance</p>
+    <div class="" id="progressbar">
+        <p id="scrollHere" class="active">No. Assurance</p>
         <p>Patient Data</p>
         <p>Insurance Data</p>
         <p>Medical Data</p>
@@ -43,15 +62,17 @@
                     <div class="col-12">
                         <h1 class="form-title">Nº carte assurance de base</h1>
                         <div class="form-group">
-                            <input type="text" class="col-sm-11 form-elem-field form-control" name="nCarte" />
+                            <label id="SwipeNowAlert" class="form-elem-name"> </label>
+                            <input type="text" id="nCarte" class="20NumDigit col-sm-11 form-elem-field form-control" name="nCarte" placeholder="Enter number manually or click on textfield and swipe card" />
                         </div>
                     </div>
                 </div>
-                <input type="button" name="next" style="" class="next form-button-next form-button-label" value="Next" />
+                <input type="button" name="next" style="" id="getData" class="next form-button form-button-label chevron-right scrollUp" value="Next" />
+                <!--<input type="button" name="pdf" style="" class="pdf form-button form-button-label scrollUp" value="PDF"  />-->
             </fieldset>
             <fieldset class="form-left">
                 <div class="row">
-                    <div class="col-6">
+                    <div class="col-6 form-right">
                         <h1 class="form-title">Patient Data</h1>
                         <div class="form-group">
                             <label class="form-elem-name control-label">Prénom *</label>
@@ -63,20 +84,22 @@
                         </div>
                         <div class="form-group">
                             <label class="form-elem-name control-label">Date de Naissance *</label>
-                            <input type="text" class="col-sm-11 form-elem-field form-control" name="birthDate" placeholder="YYYY/MM/DD" />
+                            <input type="text" class="col-sm-11 form-elem-field form-control" name="birthDate" placeholder="DD.MM.YYYY" />
                         </div>
                         <div class="row">
                             <div class="form-group col-sm-6">
                                 <label class="control-label form-elem-name">Etat Civil</label>
                                 <div class="dropdown">
                                     <select class="form-elem-field" name="civilState">
-                                        <option value="single">Sinlge</option>
+                                        <option value="none"></option>
+                                        <option value="single">Single</option>
                                         <option value="married">Married</option>
+                                        <option value="pacs">PACS</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group col-sm-6">
-                                <label class="control-label form-elem-name control-label">Sexe</label>
+                                <label class="control-label form-elem-name">Sexe *</label>
                                 <div class="radio">
                                     <label>
                                         <input type="radio" name="gender" value="man" /> Homme</label>
@@ -90,8 +113,12 @@
                             <input type="text" class="col-sm-11 form-elem-field form-control" name="address" />
                         </div>
                         <div class="form-group">
-                            <label class="form-elem-name control-label">NP + Lieu</label>
-                            <input type="text" class="col-sm-11 form-elem-field form-control" name="NPLieu" />
+                            <label class="form-elem-name control-label">NP</label>
+                            <input type="text" class="col-sm-11 form-elem-field form-control" name="np" />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-elem-name control-label">Lieu</label>
+                            <input type="text" class="col-sm-11 form-elem-field form-control" name="lieu" />
                         </div>
                         <div class="form-group">
                             <label class="form-elem-name control-label">Canton</label>
@@ -102,8 +129,8 @@
                             <input type="text" class="col-sm-11 form-elem-field form-control" name="phone" />
                         </div>
                         <div class="form-group">
-                            <label class="form-elem-name control-label">Address e-mail</label>
-                            <input type="text" class="col-sm-11 form-elem-field form-control" name="email" />
+                            <label class="form-elem-name">Address e-mail</label>
+                            <input type="text" class="col-sm-11 form-elem-field" name="email" />
                         </div>
                     </div>
                     <div class="col-6 form-right">
@@ -131,8 +158,8 @@
                         </div>
                     </div>
                 </div>
-                <input type="button" name="previous" class="previous form-button-next form-button-label" value="Previous" />
-                <input type="button" name="next" class="next form-button-next form-button-label" value="Next" />
+                <input type="button" name="previous" class="previous form-button form-button-label scrollUp" value="Previous" />
+                <input type="button" name="next" class="next form-button form-button-next form-button-label scrollUp" value="Next" />
             </fieldset>
             <fieldset class="form-left">
                 <div class="row">
@@ -140,7 +167,7 @@
                         <h1 class="form-title">Insurance Data</h1>
                         <div class="form-group">
                             <label class="form-elem-name control-label">N° AVS</label>
-                            <input type="text" class="col-sm-11 form-elem-field form-control" name="nAvs" />
+                            <input type="text" id="nAvs" class="20NumDigit col-sm-11 form-elem-field form-control" name="nAvs" />
                         </div>
                         <div class="form-group">
                             <label class="form-elem-name control-label">N° POLICE</label>
@@ -151,16 +178,20 @@
                             <input type="text" class="col-sm-11 form-elem-field form-control" name="assuranceBASEName" />
                         </div>
                         <div class="form-group">
-                            <label class="form-elem-name control-label">Assurance BASE No. OFAS</label>
-                            <input type="text" class="col-sm-11 form-elem-field form-control" name="assuranceBASE_OFAS" />
+                            <label class="form-elem-name control-label">Assurance BASE No. OFSP</label>
+                            <input type="text" id="base_ofas" class="20NumDigit col-sm-11 form-elem-field form-control" name="assuranceBASE_OFAS" />
                         </div>
                         <div class="form-group">
                             <label class="form-elem-name control-label">Assurance COMPL Nom</label>
                             <input type="text" class="col-sm-11 form-elem-field form-control" name="assuranceCOMPLName" />
                         </div>
                         <div class="form-group">
-                            <label class="form-elem-name control-label">Assurance COMPL No. OFAS</label>
-                            <input type="text" class="col-sm-11 form-elem-field form-control" name="assuranceCOMPL_OFAS" />
+                            <label class="form-elem-name control-label">Assurance COMPL No. OFSP</label>
+                            <input type="text" id="compl_ofas" class="20NumDigit col-sm-11 form-elem-field form-control" name="assuranceCOMPL_OFAS" />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-elem-name control-label">Classe</label>
+                            <input type="text" class="col-sm-11 form-elem-field form-control" name="relation" />
                         </div>
                     </div>
                     <div class="col-6 form-right">
@@ -168,18 +199,6 @@
                         <div class="form-group">
                             <label class="form-elem-name control-label">Patient payant lui-même / étrangers</label>
                             <input type="text" class="col-sm-11 form-elem-field form-control" name="patientType" />
-                        </div>
-                        <div class="form-group">
-                            <label class="form-elem-name control-label">Médecin traitant</label>
-                            <input type="text" class="col-sm-11 form-elem-field form-control" name="traitant" />
-                        </div>
-                        <div class="form-group">
-                            <label class="form-elem-name control-label">Médecin envoyeur</label>
-                            <input type="text" class="col-sm-11 form-elem-field form-control" name="envoyeur" />
-                        </div>
-                        <div class="form-group">
-                            <label class="form-elem-name control-label">Classe</label>
-                            <input type="text" class="col-sm-11 form-elem-field form-control" name="relation" />
                         </div>
                         <div class="form-group">
                             <label class="form-elem-name control-label">Surclassement hôtelier</label>
@@ -192,10 +211,18 @@
                                 </select>
                             </div>
                         </div>
+                        <div class="form-group">
+                            <label class="form-elem-name control-label">Médecin Opérateur/Hôpital</label>
+                            <input type="text" class="col-sm-11 form-elem-field form-control" name="traitant" />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-elem-name control-label">Médecin envoyeur</label>
+                            <input type="text" class="col-sm-11 form-elem-field form-control" name="envoyeur" />
+                        </div>
                     </div>
                 </div>
-                <input type="button" name="previous" class="previous form-button-next form-button-label" value="Previous" />
-                <input type="button" name="next" style="" class="next form-button-next form-button-label" value="Next" />
+                <input type="button" name="previous" class="previous form-button form-button-label scrollUp" value="Previous" />
+                <input type="button" name="next" style="" class="next form-button form-button-next form-button-label scrollUp" value="Next" />
             </fieldset>
             <fieldset class="form-left">
                 <div class="row">
@@ -332,8 +359,8 @@
                         </div>
                     </div>
                 </div>
-                <input type="button" name="previous" class="previous form-button-next form-button-label" value="Previous" />
-                <input type="button" name="next" style="" class="next form-button-next form-button-label" value="Next" />
+                <input type="button" name="previous" class="previous form-button form-button-label scrollUp" value="Previous" />
+                <input type="button" name="next" style="" class="next form-button form-button-next form-button-label scrollUp" value="Next" />
             </fieldset>
             <fieldset class="form-left">
                 <div class="row">
@@ -388,10 +415,6 @@
                             <input type="text" class="col-sm-11 form-elem-field form-control" name="hospitalisation" />
                         </div>
                         <div class="form-group">
-                            <label class="form-elem-name control-label">Hospitalisation</label>
-                            <input type="text" class="col-sm-11 form-elem-field form-control" name="hospitalisation" />
-                        </div>
-                        <div class="form-group">
                             <label class="form-elem-name control-label">Ambulatoire</label>
                             <input type="text" class="col-sm-11 form-elem-field form-control" name="ambulatoire" />
                         </div>
@@ -409,9 +432,9 @@
                         </div>
                     </div>
                 </div>
-                <input type="button" name="previous" class="previous form-button-next form-button-label" value="Previous" />
-                <input type="button" name="next" style="" class="form-button-next form-button-label" value="PDF" />
-                <input type="submit" name="next" style="" class="form-button-next form-button-label" value="Submit" />
+                <input type="button" name="previous" class="previous form-button form-button-label scrollUp" value="Previous" />
+                <input type="submit" name="submit" style="" class="submit form-button form-button-next form-button-label" value="Submit" />
+                <input type="button" name="pdf" style="margin-right: 5px;" class="pdf form-button form-button-next form-button-label" value="PDF" />
             </fieldset>
         </form>
     </div>

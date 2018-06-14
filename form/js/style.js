@@ -1,5 +1,45 @@
   $(document).ready(function() {
 
+      $('.scrollUp').on("click", function() {
+        document.getElementById('scrollHere').scrollIntoView();
+      });
+
+      document.getElementById('nCarte').addEventListener('input', function(e) {
+          var target = e.target,
+              position = target.selectionEnd,
+              length = target.value.length;
+
+          target.value = target.value.replace(/[^\dA-Z]/g, '').replace(/(.{4})/g, '$1 ').trim();
+          target.selectionEnd = position += ((target.value.charAt(position - 1) === ' ' && target.value.charAt(length - 1) === ' ' && length !== target.value.length) ? 1 : 0);
+      });
+
+      document.getElementById('nAvs').addEventListener('input', function(e) {
+          var target = e.target,
+              position = target.selectionEnd,
+              length = target.value.length;
+
+          target.value = target.value.replace(/[^\dA-Z]/g, '').replace(/(.{4})/g, '$1 ').trim();
+          target.selectionEnd = position += ((target.value.charAt(position - 1) === ' ' && target.value.charAt(length - 1) === ' ' && length !== target.value.length) ? 1 : 0);
+      });
+
+      document.getElementById('base_ofas').addEventListener('input', function(e) {
+          var target = e.target,
+              position = target.selectionEnd,
+              length = target.value.length;
+
+          target.value = target.value.replace(/[^\dA-Z]/g, '').replace(/(.{4})/g, '$1 ').trim();
+          target.selectionEnd = position += ((target.value.charAt(position - 1) === ' ' && target.value.charAt(length - 1) === ' ' && length !== target.value.length) ? 1 : 0);
+      });
+
+      document.getElementById('compl_ofas').addEventListener('input', function(e) {
+          var target = e.target,
+              position = target.selectionEnd,
+              length = target.value.length;
+
+          target.value = target.value.replace(/[^\dA-Z]/g, '').replace(/(.{4})/g, '$1 ').trim();
+          target.selectionEnd = position += ((target.value.charAt(position - 1) === ' ' && target.value.charAt(length - 1) === ' ' && length !== target.value.length) ? 1 : 0);
+      });
+
       //jQuery time
       var current_fs, next_fs, previous_fs; //fieldsets
       var left, opacity, scale; //fieldset properties which we will animate
@@ -9,7 +49,7 @@
       $('.next').on("click", function() {
           var validator = $('#contact_form').data('bootstrapValidator');
           validator.validate();
-          
+
           if (validator.isValid()) {
 
               if (animating) return false;
@@ -51,7 +91,9 @@
                   },
                   //this comes from the custom easing plugin
                   easing: 'easeInOutBack'
+                  
               });
+
           }
       });
       $(".previous").click(function() {
@@ -94,6 +136,7 @@
               //this comes from the custom easing plugin
               easing: 'easeInOutBack'
           });
+          window.scrollTo(0, 135);
       });
       $(".submit").click(function() {
           return false;
@@ -103,9 +146,9 @@
 
   function ValidateForm() {
       $('#contact_form').bootstrapValidator({
-          framework: 'bootstrap4',
+          framework: 'bootstrap',
           // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
-          feedbackIcons: {
+          icon: {
               valid: 'glyphicon glyphicon-ok',
               invalid: 'glyphicon glyphicon-remove',
               validating: 'glyphicon glyphicon-refresh'
@@ -114,16 +157,13 @@
               nCarte: {
                   message: 'The Assurance number is not valid',
                   validators: {
-                      notEmpty: {
-                          message: 'The Assurance number is required and cannot be empty'
-                      },
                       stringLength: {
-                          min: 20,
-                          max: 20,
+                          min: 24,
+                          max: 24,
                           message: 'The Assurance number must contain 20 numbers'
                       },
                       regexp: {
-                          regexp: /^[0-9]+$/,
+                          regexp: /^[0-9 ]+$/,
                           message: 'The Assurance number can only contain numbers'
                       }
                   }
@@ -133,10 +173,6 @@
                   validators: {
                       notEmpty: {
                           message: 'Prénom is required and cannot be empty'
-                      },
-                      stringLength: {
-                          min: 6,
-                          message: 'Prénom must be more than 6 characters long'
                       },
                       regexp: {
                           regexp: /^[a-zA-Z0-9]+$/,
@@ -150,17 +186,13 @@
                       notEmpty: {
                           message: 'Nom is required and cannot be empty'
                       },
-                      stringLength: {
-                          min: 6,
-                          message: 'Nom must be more than 6 characters long'
-                      },
                       regexp: {
                           regexp: /^[a-zA-Z0-9]+$/,
                           message: 'Nom can only consist of alphabetical and number'
                       }
                   }
               },
-              email: {
+              _email: {
                   validators: {
                       notEmpty: {
                           message: 'The email address is required and cannot be empty'
@@ -172,12 +204,10 @@
               },
               birthDate: {
                   validators: {
-                      notEmpty: {
-                          message: 'The date of birth is required'
-                      },
                       date: {
-                          format: 'YYYY/MM/DD',
-                          message: 'The date of birth is not valid'
+                          message: 'The date of birth is not valid',
+                          format: 'DD.MM.YYYY',
+                          separator: '.'
                       }
                   }
               },
@@ -191,16 +221,13 @@
               nAvs: {
                   message: 'The AVS number is not valid',
                   validators: {
-                      notEmpty: {
-                          message: 'The AVS number is required and cannot be empty'
-                      },
                       stringLength: {
-                          min: 20,
-                          max: 20,
+                          min: 24,
+                          max: 24,
                           message: 'The AVS number must contain 20 numbers'
                       },
                       regexp: {
-                          regexp: /^[0-9]+$/,
+                          regexp: /^[0-9 ]+$/,
                           message: 'The AV number can only contain numbers'
                       }
                   }
@@ -208,16 +235,13 @@
               assuranceBASE_OFAS: {
                   message: 'The Asurance Base Nº OFAS is not valid',
                   validators: {
-                      notEmpty: {
-                          message: 'The Asurance Base Nº OFAS is required and cannot be empty'
-                      },
                       stringLength: {
-                          min: 20,
-                          max: 20,
+                          min: 24,
+                          max: 24,
                           message: 'The Asurance Base Nº OFAS must contain 20 numbers'
                       },
                       regexp: {
-                          regexp: /^[0-9]+$/,
+                          regexp: /^[0-9 ]+$/,
                           message: 'The Asurance Base Nº OFAS can only contain numbers'
                       },
                       different: {
@@ -229,16 +253,13 @@
               assuranceCOMPL_OFAS: {
                   message: 'The Asurance COMPL Nº OFAS is not valid',
                   validators: {
-                      notEmpty: {
-                          message: 'The Asurance COMPL Nº OFAS is required and cannot be empty'
-                      },
                       stringLength: {
-                          min: 20,
-                          max: 20,
+                          min: 24,
+                          max: 24,
                           message: 'The Asurance COMPL Nº OFAS must contain 20 numbers'
                       },
                       regexp: {
-                          regexp: /^[0-9]+$/,
+                          regexp: /^[0-9 ]+$/,
                           message: 'The Asurance COMPL Nº OFAS can only contain numbers'
                       },
                       different: {

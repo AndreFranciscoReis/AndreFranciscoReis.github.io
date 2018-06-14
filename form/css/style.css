@@ -74,15 +74,15 @@ a:hover {
 }
 
 .form-left {
-    padding: 0px 60.5px 0px 155px;
+    padding: 0px 60.5px 0px 115px;
     position: relative;
     display: block;
 }
 
 .form-right {
-    padding: 0px 60.5px 0px 60.5px;
+    /*padding: 0px 60.5px 0px 60.5px;
     position: relative;
-    display: block;
+    display: block;*/
 }
 
 .form-title {
@@ -125,8 +125,8 @@ a:hover {
 }
 
 .form-button-label {
-    height: 30px;
-    width: 215.38px;
+	height: 30px;
+	width: 215.38px;
     color: #FFFFFF;
     font-family: "Helvetica Neue";
     font-size: 23px;
@@ -135,13 +135,17 @@ a:hover {
     text-align: center;
 }
 
-.form-button-next {
+.form-button {
     height: 56px;
     width: 280px;
     border: 1px solid #00356A;
     border-radius: 2px;
     background-color: #00356A;
     margin-bottom: 59px;
+}
+
+.form-button-next {
+	float: right;
 }
 
 .form-buttons-group-right {
@@ -181,6 +185,12 @@ input[type="checkbox"]:checked + label {
     overflow: hidden;
     /*CSS counters to number the steps*/
     counter-reset: step;
+	width: 100%;
+	min-height: 233px;
+	text-align: center;
+	padding-top: 5%;
+	padding-bottom: 5%;
+	
 }
 
 #progressbar p {
@@ -193,8 +203,9 @@ input[type="checkbox"]:checked + label {
     border: 1px solid #00356A;
     border-radius: 4px;
     background-color: #FFFFFF;
-    display: inline-block;
-    text-align: center;
+    display: -webkit-inline-box;
+    margin: 0px 32px;
+
 }
 
 #progressbar p:before {
