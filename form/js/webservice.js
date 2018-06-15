@@ -1,14 +1,10 @@
 $(document).ready(function() {
     $('#getData').on("click", function() {
-        var xmlhttp = new XMLHttpRequest();
-           
-            //replace second argument with the path to your Secret Server webservices
-            xmlhttp.open('POST', '  https://sc005797.aevisintra.ch:443/MSHospitalServer/Vk1Service12?wsdl', true);
-           
-            //create the SOAP request
-            //replace username, password (and org + domain, if necessary) with the appropriate info
-            var strRequest =
-                "<soap:Envelope xmlns:soap= 'http://www.w3.org/2003/05/soap-envelope ' xmlns:wsa= 'http://schemas.xmlsoap.org/ws/2004/08/addressing ' xmlns:wsse= 'http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd ' xmlns:wsu= 'http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd ' xmlns:xsd= 'http://www.w3.org/2001/XMLSchema ' xmlns:xsi= 'http://www.w3.org/2001/XMLSchema-instance '>\
+
+        // BELOW I NEED TO ADD PARAMETERS, BUT I DONT KNOW HOW
+
+        var soapEnv =
+            "<soap:Envelope xmlns:soap= 'http://www.w3.org/2003/05/soap-envelope ' xmlns:wsa= 'http://schemas.xmlsoap.org/ws/2004/08/addressing ' xmlns:wsse= 'http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd ' xmlns:wsu= 'http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd ' xmlns:xsd= 'http://www.w3.org/2001/XMLSchema ' xmlns:xsi= 'http://www.w3.org/2001/XMLSchema-instance '>\
               <env:Header xmlns:env= 'http://www.w3.org/2003/05/soap-envelope '>\
                 <wsa:Action>http://www.ehealth.admin.ch/xmlns/vk-adm/1/getCardInformation</wsa:Action>\
                 <wsa:MessageID>urn:uuid:c62dff7b-bf8f-42fa-a88b-891992d1a431</wsa:MessageID>\
@@ -43,19 +39,16 @@ $(document).ready(function() {
               </soap:Body>\
             </soap:Envelope>";
 
-
-            //specify request headers
-            xmlhttp.setRequestHeader('Content-Type', 'text/xml; charset=utf-8');
-
-            //FOR TESTING: display results in an alert box once the response is received
-            xmlhttp.onreadystatechange = function () {
-                if (xmlhttp.readyState == 4) {
-                    alert(xmlhttp.responseText);
-                }
-            };
-
-            //send the SOAP request
-            xmlhttp.send(strRequest);
-        
+        $.ajax({
+            url: "https://sc005797.aevisintra.ch:443/MSHospitalServer/Vk1Service12?wsdl",
+            type: "POST",
+            dataType: "xml",
+            headers: {
+              //"Authorization": "Basic " + btoa(genolier+":"+FP48!ksmAWD)
+              "Authorization": "Basic genolier:FP48!ksmAWD"
+            },
+            data: { xml: escape(soapEnv) },
+            contentType: "text/xml; charset=\"utf-8\""
+        });
     })
 });
