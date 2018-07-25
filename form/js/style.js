@@ -11,19 +11,6 @@
         document.getElementById('scrollHere').scrollIntoView();
       });
 
-      $.getJSON(url).success(function(data) {
-        var country_code = data.geoplugin_countryCode;
-        var $country = $('#country');
-        if ($country.length) {
-            var $option = $country.find('option[value="' + country_code + '"]');
-            if ($option.length) {
-                $option.prependTo($country);
-                $country.find('option[value=""]').text('--------------');
-                $country.val(country_code);
-            }
-        }
-    });
-
       document.getElementById('nCarte').addEventListener('input', function(c) {
           var targetC = c.target,
               positionC = targetC.selectionEnd,
