@@ -1,18 +1,40 @@
+  
   $(document).ready(function() {
+
+      $('.diagnosticList').select2();
+
+      $('input[type="radio"]').on('change', function(e) {
+        $(this).checked="checked";
+      });
 
       $('.scrollUp').on("click", function() {
         document.getElementById('scrollHere').scrollIntoView();
       });
 
-      document.getElementById('nCarte').addEventListener('input', function(e) {
-          var target = e.target,
-              position = target.selectionEnd,
-              length = target.value.length;
+      $.getJSON(url).success(function(data) {
+        var country_code = data.geoplugin_countryCode;
+        var $country = $('#country');
+        if ($country.length) {
+            var $option = $country.find('option[value="' + country_code + '"]');
+            if ($option.length) {
+                $option.prependTo($country);
+                $country.find('option[value=""]').text('--------------');
+                $country.val(country_code);
+            }
+        }
+    });
 
-          target.value = target.value.replace(/[^\dA-Z]/g, '').replace(/(.{4})/g, '$1 ').trim();
-          target.selectionEnd = position += ((target.value.charAt(position - 1) === ' ' && target.value.charAt(length - 1) === ' ' && length !== target.value.length) ? 1 : 0);
+      document.getElementById('nCarte').addEventListener('input', function(c) {
+          var targetC = c.target,
+              positionC = targetC.selectionEnd,
+              lengthC = targetC.value.length;
+
+          targetC.value = targetC.value.replace(/[^\dA-Z]/g, '').replace(/(.{4})/g, '$1 ').trim();
+          targetC.selectionEnd = positionC += ((targetC.value.charAt(positionC - 1) === ' ' && targetC.value.charAt(lengthC - 1) === ' ' && lengthC !== targetC.value.length) ? 1 : 0);
       });
 
+      /*
+      This will give an error because nAvs is not set at this time
       document.getElementById('nAvs').addEventListener('input', function(e) {
           var target = e.target,
               position = target.selectionEnd,
@@ -38,7 +60,7 @@
 
           target.value = target.value.replace(/[^\dA-Z]/g, '').replace(/(.{4})/g, '$1 ').trim();
           target.selectionEnd = position += ((target.value.charAt(position - 1) === ' ' && target.value.charAt(length - 1) === ' ' && length !== target.value.length) ? 1 : 0);
-      });
+      });*/
 
       //jQuery time
       var current_fs, next_fs, previous_fs; //fieldsets
@@ -144,6 +166,30 @@
       ValidateForm();
   });
 
+    function hospExtraFields(that) {
+        if (that.value == "hospitalisation") {
+            document.getElementById("showHospOptions").style.display = "block";
+        } else {
+            document.getElementById("showHospOptions").style.display = "none";
+        }
+    }
+
+    function typeExtraFields(that) {
+        if (that.value == "maladieLAA" || that.value == "accidentLAA") {
+            document.getElementById("showTypeOptions").style.display = "block";
+        } else {
+            document.getElementById("showTypeOptions").style.display = "none";
+        }
+    } 
+
+    function classeExtraFields(that) {
+        if (that.value == "prive" || that.value == "demiPrive") {
+            document.getElementById("showClasseOptions").style.display = "block";
+        } else {
+            document.getElementById("showClasseOptions").style.display = "none";
+        }
+    }
+
   function ValidateForm() {
       $('#contact_form').bootstrapValidator({
           framework: 'bootstrap',
@@ -160,11 +206,11 @@
                       stringLength: {
                           min: 24,
                           max: 24,
-                          message: 'The Assurance number must contain 20 numbers'
+                          message: 'The Assurance number must contain 20 numbers. '
                       },
                       regexp: {
                           regexp: /^[0-9 ]+$/,
-                          message: 'The Assurance number can only contain numbers'
+                          message: 'The Assurance number can only contain numbers. '
                       }
                   }
               },

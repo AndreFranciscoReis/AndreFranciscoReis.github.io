@@ -23,15 +23,16 @@ $(document).ready(function(){
     document.getElementById('SwipeNowAlert').innerHTML = ' ';
     
   }).focus(function(){
-    
     document.getElementById('SwipeNowAlert').innerHTML = 'Ready for card swipe';
     
   }).keyup(function(event) {
-    
+
     if (event.keyCode == 13) {
       
       var ccNum =  $('#nCarte').val();
-    
+//window.alert(JSON.stringify($('#nCarte')));
+window.alert($('#nCarte'));
+
       var isCaretPresent = false;
       var isEqualPresent = false;
   
@@ -45,6 +46,9 @@ $(document).ready(function(){
       else
         isEqualPresent = false;
   
+window.alert("isCaretPresent "+isCaretPresent);
+window.alert("isEqualPresent "+isEqualPresent);
+
       //handle parsing differently depending on card format
       if (isCaretPresent) {
         
