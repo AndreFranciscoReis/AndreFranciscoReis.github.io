@@ -204,7 +204,7 @@ input[type="checkbox"]:checked + label {
     border-radius: 4px;
     background-color: #FFFFFF;
     display: -webkit-inline-box;
-    margin: 0px 22px;
+    margin: 0px 15px;
 
 }
 
@@ -244,4 +244,10 @@ input[type="checkbox"]:checked + label {
     border: 1px solid #FFFFFF;
     background-color: #00356A;
     color: #FFFFFF;
+}
+
+
+/* Datepicker */
+.ui-datepicker .ui-widget-content {
+	color: #00356A;
 }

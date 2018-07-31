@@ -1,28 +1,23 @@
-  
   $(document).ready(function() {
 
       $('.diagnosticList').select2();
 
       $('input[type="radio"]').on('change', function(e) {
-        $(this).checked="checked";
+          $(this).checked = "checked";
       });
 
       $('.scrollUp').on("click", function() {
-        document.getElementById('scrollHere').scrollIntoView();
+          document.getElementById('scrollHere').scrollIntoView();
       });
 
-      $.getJSON(url).success(function(data) {
-        var country_code = data.geoplugin_countryCode;
-        var $country = $('#country');
-        if ($country.length) {
-            var $option = $country.find('option[value="' + country_code + '"]');
-            if ($option.length) {
-                $option.prependTo($country);
-                $country.find('option[value=""]').text('--------------');
-                $country.val(country_code);
-            }
-        }
-    });
+      $('.datePicker').datepicker({
+          format: "dd.mm.yyyy",
+          language: "fr",
+          orientation: "top auto",
+          multidate: false,
+          todayHighlight: true,
+          autoclose: true
+      });
 
       document.getElementById('nCarte').addEventListener('input', function(c) {
           var targetC = c.target,
@@ -31,6 +26,13 @@
 
           targetC.value = targetC.value.replace(/[^\dA-Z]/g, '').replace(/(.{4})/g, '$1 ').trim();
           targetC.selectionEnd = positionC += ((targetC.value.charAt(positionC - 1) === ' ' && targetC.value.charAt(lengthC - 1) === ' ' && lengthC !== targetC.value.length) ? 1 : 0);
+
+          /*
+          if (targetC.value.length > 24) {
+              targetC.selectionEnd = targetC.value.substring(0, 24);
+          } else {
+              targetC.selectionEnd = targetC.value;
+          }*/
       });
 
       /*
@@ -113,7 +115,7 @@
                   },
                   //this comes from the custom easing plugin
                   easing: 'easeInOutBack'
-                  
+
               });
 
           }
@@ -166,29 +168,29 @@
       ValidateForm();
   });
 
-    function hospExtraFields(that) {
-        if (that.value == "hospitalisation") {
-            document.getElementById("showHospOptions").style.display = "block";
-        } else {
-            document.getElementById("showHospOptions").style.display = "none";
-        }
-    }
+  function hospExtraFields(that) {
+      if (that.value == "hospitalisation") {
+          document.getElementById("showHospOptions").style.display = "block";
+      } else {
+          document.getElementById("showHospOptions").style.display = "none";
+      }
+  }
 
-    function typeExtraFields(that) {
-        if (that.value == "maladieLAA" || that.value == "accidentLAA") {
-            document.getElementById("showTypeOptions").style.display = "block";
-        } else {
-            document.getElementById("showTypeOptions").style.display = "none";
-        }
-    } 
+  function typeExtraFields(that) {
+      if (that.value == "maladieLAA" || that.value == "accidentLAA") {
+          document.getElementById("showTypeOptions").style.display = "block";
+      } else {
+          document.getElementById("showTypeOptions").style.display = "none";
+      }
+  }
 
-    function classeExtraFields(that) {
-        if (that.value == "prive" || that.value == "demiPrive") {
-            document.getElementById("showClasseOptions").style.display = "block";
-        } else {
-            document.getElementById("showClasseOptions").style.display = "none";
-        }
-    }
+  function classeExtraFields(that) {
+      if (that.value == "prive" || that.value == "demiPrive") {
+          document.getElementById("showClasseOptions").style.display = "block";
+      } else {
+          document.getElementById("showClasseOptions").style.display = "none";
+      }
+  }
 
   function ValidateForm() {
       $('#contact_form').bootstrapValidator({
