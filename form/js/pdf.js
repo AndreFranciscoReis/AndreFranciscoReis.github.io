@@ -130,7 +130,7 @@ $(document).ready(function() {
 
         // Get all fieldsets from form
         var fieldsets = document.forms[0].getElementsByTagName('FIELDSET');
-        var fieldsets = [fieldsets[0]];
+        //var fieldsets = [fieldsets[2]];
 
         // Loop through the fieldsets
         for (var x = 0; x < fieldsets.length ; x++) {
@@ -197,7 +197,7 @@ $(document).ready(function() {
                 columnArr.push({ text: child.innerHTML + '\n\n', style: 'subTitleElem' });
             } else {
 
-                if (child.classList.contains("row")) {
+                if (child.classList.contains("row") || child.classList.contains("display")) {
                     buildColumn(child.children, columnArr);
                     continue;
                 }
@@ -222,19 +222,23 @@ $(document).ready(function() {
                     childLabel = child.children[0];
                     childValue = child.children[1];
 
-                    childValue = childValue.children[0][childValue.children[0].selectedIndex];
+                    if(childValue.classList.contains("list")) {
+                        childValue = childValue.value;
+                    } else {
+                        childValue = childValue.children[0][childValue.children[0].selectedIndex];
+                    }
 
                     isDropdown = true;
                 }
 
-                if (childLabel.nodeName == "INPUT") {
+                if (childLabel.nodeName == "INPUT" && !isDropdown && !isRadio) {
                     columnArr.push({ text: childLabel.value });
                 } else {
                     columnArr.push({ text: childLabel.innerHTML });
                 }
 
                 //alert(child.children[1].value+"\nEmpty? "+(child.children[1].value == "")+"\nNull? "+(child.children[1].value == null))
-                if (childValue.value && childValue.value != "" && childValue.value != undefined && childValue.value != "undefined" && childValue.value != null) {
+                if (childValue != undefined && childValue.value != "" && childValue.value != undefined && childValue.value != "undefined" && childValue.value != null) {
                     //alert(childValue.value + " [" + childValue.type + "]: " + (childValue.value == "undefined") + " || " + (childValue.value == undefined) + " || " + (childValue.value === undefined) + " || " + (childValue.value === "undefined"));
                     childValue = childValue.value;
                 } else {
@@ -251,10 +255,13 @@ $(document).ready(function() {
     }
 
     function checkRadioOrDropDown(child, elemType) {
+        //alert("Child: "+child)
         //alert("Node: " + child.nodeName + "\nIs Lable? " + child.children[0].nodeName + "\nIs Div? " + child.children[1].nodeName + "\nClass Radio? " + child.children[1].classList.contains("radio"));
 
-        if (child.children[0].nodeName == "LABEL" && child.children[1].nodeName == "DIV" && child.children[1].classList.contains(elemType)) {
+        if (child.children[0].nodeName == "LABEL") {
+          if(child.children[1].classList.contains("list") || (child.children[1].nodeName == "DIV" && child.children[1].classList.contains(elemType))) {
             return true;
+            }
         }
 
         return false;
